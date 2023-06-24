@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from './AddUsers.module.css';
@@ -10,15 +10,16 @@ const UserInput = (props) => {
 
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredUserage, setEnteredUserage] = useState('');
+    const [enteredUserCollege, setEnteredUserCollege] = useState('');
     const [error, setError] = useState();
 
 
     const addInputHandler = (event) => {
         event.preventDefault();
-        if (enteredUsername.trim().length === 0 || enteredUserage.trim().length === 0) {
+        if (enteredUsername.trim().length === 0 || enteredUserage.trim().length === 0 || enteredUserCollege.trim().length === 0) {
             setError({
                 title: 'Invalid input',
-                message: 'please enter a valid name and age (non-empty values).'
+                message: 'please enter a valid name and age and college (non-empty values).'
             })
             return;
         }
@@ -31,14 +32,20 @@ const UserInput = (props) => {
             return;
         }
 
-        props.onAddUser(enteredUsername, enteredUserage);
+        props.onAddUser(enteredUsername, enteredUserage, enteredUserCollege);
         setEnteredUsername('');
         setEnteredUserage('')
+        setEnteredUserCollege('');
     }
 
     // UserName 
     const userNameChangeHandler = (event) => {
         setEnteredUsername(event.target.value);
+
+    }
+    // UserCollege Name
+    const userCollegeHandler = (event) => {
+        setEnteredUserCollege(event.target.value);
 
     }
 
@@ -70,6 +77,12 @@ const UserInput = (props) => {
                         type="text"
                         value={enteredUsername}
                         onChange={userNameChangeHandler} />
+                    <label htmlFor="collegename">collegename</label>
+                    <input
+                        id="collegename"
+                        type="text"
+                        value={enteredUserCollege}
+                        onChange={userCollegeHandler} />
                     <label htmlFor="Age">Age (Years)</label>
                     <input
                         id="Age"
