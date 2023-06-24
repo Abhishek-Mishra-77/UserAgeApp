@@ -37,14 +37,13 @@ const ErrorMode = (props) => {
                 <BackDrop onConfirm={props.onConfirm} />,
                 document.getElementById('backdrop-root'))}
 
-              {ReactDOM.createPortal(<ModelOverlay
+            {ReactDOM.createPortal(<ModelOverlay
                 title={props.title}
                 message={props.message}
                 onConfirm={props.onConfirm}
-              />
-              ,document.getElementById('overlay-root'))}
-        </Fragment>
-    )
+            />
+                , document.getElementById('overlay-root'))}
+        </Fragment>)
 }
 
 export default ErrorMode;
